@@ -1,17 +1,30 @@
 # Setup (Linux)
 
-install SFML (lib for graphics):
+## Install SFML (lib for graphics)
 
-```sudo apt-get install libsfml-dev```
+```bash
+sudo apt-get install libsfml-dev
+```
 
-compile:
+## Compile
 
-```g++ main.cpp Application.cpp MandelbrotSet.cpp -o mandelbrot -lsfml-graphics -lsfml-window -lsfml-system -pthread```
+```bash
+g++ main.cpp \
+    Application.cpp \
+    MandelbrotSet.cpp \
+    -o mandelbrot \
+    -lsfml-graphics \
+    -lsfml-window \
+    -lsfml-system \
+    -pthread
+```
 
-run:
+## Run
 
+```bash
 ./mandelbrot
+```
 
-# Demo:
+# Demo
 
 *to be added*
