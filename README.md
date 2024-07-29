@@ -29,7 +29,7 @@ g++ main.cpp \
 
 | Width | Height | Maximum Number of Iterations | Speed |
 |-------|--------|------------------------------|-------|
-| 800   | 600    | 100                          | 1x    |
+| 600   | 450    | 100                          | 1x    |
 
 ![demo2](https://github.com/user-attachments/assets/327ca5b5-983d-4006-a843-85a0497e2ef3)
 
