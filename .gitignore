@@ -1,0 +1,7 @@
+*
+!*.cpp
+!LICENSE
+!*.ttf
+!README.md
+!.clang-format
+!.gitignore
