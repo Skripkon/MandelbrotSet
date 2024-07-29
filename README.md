@@ -25,14 +25,14 @@ g++ main.cpp \
 ./mandelbrot
 ```
 
-# Demo
+# Demo (quality lost)
 
-Original speed (no editing)
-
-| Width | Height | Maximum Number of Iterations |
-|-------|--------|------------------------------|
-| 800   | 600    | 100                          |
+| Width | Height | Maximum Number of Iterations | Speed |
+|-------|--------|------------------------------|-------|
+| 800   | 600    | 100                          | 1x    |
 
 ![demo2](https://github.com/user-attachments/assets/327ca5b5-983d-4006-a843-85a0497e2ef3)
 
-https://github.com/user-attachments/assets/ea86bc21-220a-402c-9a40-6546fe1b79cd
+![demo1](https://github.com/user-attachments/assets/d767de3e-61c8-47f3-9b75-574e2868d5f7)
+
+
