@@ -40,12 +40,11 @@ class Application {
       while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
           window.close();
+          return;
         }
         handleEvent(event);
       }
-
       // Draw elements on the window
-      window.clear();
       window.draw(sprite);
       if (dragging) {
         window.draw(selectionRect);
@@ -54,50 +53,9 @@ class Application {
       window.draw(changeColorButtonText);
       window.draw(resetZoomingButton);
       window.draw(resetZoomingButtonText);
+
       window.display();
     }
-  }
-
-  void drawFractal() {
-    fractal.renderFractal();
-    for (int y = 0; y < fractal.HEIGHT; ++y) {
-      for (int x = 0; x < fractal.WIDTH; ++x) {
-        int iter = fractal.image[y * fractal.WIDTH + x];
-        sf::Color color = sf::Color::Black;
-        if (iter < fractal.MAX_ITER) {
-          switch (COLOR) {
-            case 1:
-              color = sf::Color(0, 255 * iter / fractal.MAX_ITER,
-                                255 * iter / fractal.MAX_ITER);
-              break;
-            case 2:
-              color = sf::Color(255 * iter / fractal.MAX_ITER, 0,
-                                255 * iter / fractal.MAX_ITER);
-              break;
-            case 3:
-              color = sf::Color(255 * iter / fractal.MAX_ITER,
-                                255 * iter / fractal.MAX_ITER, 0);
-              break;
-          }
-        }
-        image.setPixel(x, y, color);
-      }
-    }
-  }
-
-  void createButton(int x, int y, sf::RectangleShape& button, sf::Text& text,
-                    const std::string& title) {
-    button = sf::RectangleShape(sf::Vector2f(125, 30));
-    button.setFillColor(sf::Color::Black);
-    button.setPosition(x, y);
-    button.setOutlineThickness(2);
-    button.setOutlineColor(sf::Color::White);
-
-    text.setFont(font);
-    text.setString(title);
-    text.setCharacterSize(15);
-    text.setFillColor(sf::Color::White);
-    text.setPosition(button.getPosition().x + 10, button.getPosition().y + 5);
   }
 
  private:
@@ -131,7 +89,10 @@ class Application {
       if (dragging) {
         dragging = false;
         end = sf::Mouse::getPosition(window);
-
+        if (std::abs(start.x - end.x) < EPS &&
+            std::abs(start.y - end.y) < EPS) {
+          return;
+        }
         // Ensure aspect ratio is preserved (4:3)
         double widthRatio = 4.0 / 3.0;
         double newWidth = end.x - start.x;
@@ -226,6 +187,48 @@ class Application {
     sprite.setTexture(texture);
   }
 
+  void drawFractal() {
+    fractal.renderFractal();
+    for (int y = 0; y < fractal.HEIGHT; ++y) {
+      for (int x = 0; x < fractal.WIDTH; ++x) {
+        int iter = fractal.image[y * fractal.WIDTH + x];
+        sf::Color color = sf::Color::Black;
+        if (iter < fractal.MAX_ITER) {
+          switch (COLOR) {
+            case 1:
+              color = sf::Color(0, 255 * iter / fractal.MAX_ITER,
+                                255 * iter / fractal.MAX_ITER);
+              break;
+            case 2:
+              color = sf::Color(255 * iter / fractal.MAX_ITER, 0,
+                                255 * iter / fractal.MAX_ITER);
+              break;
+            case 3:
+              color = sf::Color(255 * iter / fractal.MAX_ITER,
+                                255 * iter / fractal.MAX_ITER, 0);
+              break;
+          }
+        }
+        image.setPixel(x, y, color);
+      }
+    }
+  }
+
+  void createButton(int x, int y, sf::RectangleShape& button, sf::Text& text,
+                    const std::string& title) {
+    button = sf::RectangleShape(sf::Vector2f(125, 30));
+    button.setFillColor(sf::Color::Black);
+    button.setPosition(x, y);
+    button.setOutlineThickness(2);
+    button.setOutlineColor(sf::Color::White);
+
+    text.setFont(font);
+    text.setString(title);
+    text.setCharacterSize(15);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(button.getPosition().x + 10, button.getPosition().y + 5);
+  }
+
   // Members
   MandelbrotSet fractal;
   sf::Image image;
@@ -240,6 +243,7 @@ class Application {
   sf::Text resetZoomingButtonText;
   sf::Font font;
 
+  constexpr static const double EPS = 1e-10;
   int COLOR = 1;  // Color palette identifier (1, 2, or 3)
   bool dragging =
       false;  // Flag to indicate if the user is dragging for selection
