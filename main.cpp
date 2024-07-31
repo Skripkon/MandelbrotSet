@@ -6,7 +6,7 @@
 #include <vector>
 
 #include <SFML/Graphics.hpp>
-#include "Application.cpp"  // Include the Application class
+#include "Application.cpp"
 
 int main() {
   // The ratio (width : height) must be 4:3
