@@ -43,6 +43,7 @@ class Application {
           return;
         }
         handleEvent(event);
+        break;
       }
       // Draw elements on the window
       m_window.draw(m_sprite);
@@ -81,7 +82,7 @@ class Application {
                            255 * iter / m_fractal.MAX_ITER);
         case 3:
           return sf::Color(255 * iter / m_fractal.MAX_ITER,
-                             255 * iter / m_fractal.MAX_ITER, 0);
+                           255 * iter / m_fractal.MAX_ITER, 0);
       }
     }
     return sf::Color::Black;
