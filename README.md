@@ -1,6 +1,6 @@
 # Visualization of the Mandelbrot Set using C++ and SFML
 
-My videos about fractals and this code: [Part 1](https://youtu.be/KPTZsSQ8DcE?si=kp0P_gmDtlRbwkn7) & Part 2 (*to be added*)
+My videos about fractals and this code: [Part 1](https://youtu.be/KPTZsSQ8DcE?si=kp0P_gmDtlRbwkn7) & [Part 2](https://youtu.be/aSPB0Ftv-2A?si=iduV0tESrp9AiqxF)
 
 # Setup (Linux)
 
